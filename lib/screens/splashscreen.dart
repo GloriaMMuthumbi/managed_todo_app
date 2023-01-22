@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+
         body: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -44,15 +44,15 @@ class _SplashScreenState extends State<SplashScreen>
       ),
       child: Column(
         children: [
-          SizedBox(
-            height: 35.h,
+
+          Expanded(
+            child: Image.asset(
+              "assets/images/logo.png",
+              height: 200,
+              width: 200,
+            ),
           ),
-          Image.asset(
-            "assets/images/logo.png",
-            height: 200,
-            width: 200,
-          ),
-          SizedBox(height: 40.h,),
+          
           const Center(
               child: Padding(
             padding: EdgeInsets.all(8.0),
