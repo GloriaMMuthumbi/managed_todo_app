@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:managed_app/screens/home_screen.dart';
+import 'package:sizer/sizer.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,12 +15,12 @@ class WelcomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
           children: [
           Image.asset('assets/images/notebook.png',
-            width: 350,
-            height: 350,
+            width: 325,
+            height: 325,
           ),
-            SizedBox(height: 40,),
+            SizedBox(height: 8.h,),
             RichText(
-              text: TextSpan (
+              text: const TextSpan (
                 style: TextStyle (fontFamily: 'Inter', fontSize: 24, fontWeight: FontWeight.w700),
                 children: [
                   TextSpan (text: "Manage and Prioritize your tasks anywhere with ",
@@ -25,21 +29,26 @@ class WelcomeScreen extends StatelessWidget {
                 ]
               ),
             ),
-            SizedBox (height: 35,),
-            Text ("Increase your productivity by managing and prioritizing your tasks in one place.",
+            SizedBox (height: 2.h,),
+            const Text ("Increase your productivity by managing and prioritizing your tasks in one place.",
             style: TextStyle(fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.w500),),
-            SizedBox(height: 55,),
+            SizedBox(height: 5.h,),
             TextButton (
-                onPressed: () {}, child: Text("Get Started".toUpperCase(),
-            style: TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w800, fontSize: 16,),
-            ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
+                },
               style: TextButton.styleFrom(
-                backgroundColor: Color(0xffFFAC48),
-                padding: EdgeInsets.fromLTRB(49, 19, 49, 19),
+                backgroundColor: const Color(0xffFFAC48),
+                padding: const EdgeInsets.fromLTRB(49, 19, 49, 19),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)
                 )
-              ),
+              ), child:  Text("Get Started".toUpperCase(),
+            style: const TextStyle(color: Colors.white, fontFamily: 'Inter', fontWeight: FontWeight.w800, fontSize: 16,),
+            ),
             )
           ],
       ),

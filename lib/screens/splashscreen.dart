@@ -59,8 +59,9 @@ class _SplashScreenState extends State<SplashScreen>
             child: Text(
               "Managed",
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 25,
                 fontFamily: 'Aclonica',
+                color: Color(0xffFFAC48),
               ),
             ),
           )),
