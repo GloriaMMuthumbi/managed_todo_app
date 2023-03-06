@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(height: 8.h,),
             RichText(
               text: const TextSpan (
-                style: TextStyle (fontFamily: 'Inter', fontSize: 24, fontWeight: FontWeight.w700),
+                style: TextStyle (fontFamily: 'Inter', fontSize: 21, fontWeight: FontWeight.w700),
                 children: [
                   TextSpan (text: "Manage and Prioritize your tasks anywhere with ",
                   style: TextStyle(color: Colors.black)),
@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             SizedBox (height: 2.h,),
             const Text ("Increase your productivity by managing and prioritizing your tasks in one place.",
-            style: TextStyle(fontFamily: 'Inter', fontSize: 18, fontWeight: FontWeight.w500),),
+            style: TextStyle(fontFamily: 'Inter', fontSize: 17, fontWeight: FontWeight.w500),),
             SizedBox(height: 5.h,),
             TextButton (
                 onPressed: () {
@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                 },
               style: TextButton.styleFrom(
                 backgroundColor: const Color(0xffFFAC48),
-                padding: const EdgeInsets.fromLTRB(49, 19, 49, 19),
+                padding: const EdgeInsets.fromLTRB(42, 15, 42, 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)
                 )
