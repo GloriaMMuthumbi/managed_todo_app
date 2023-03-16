@@ -2,8 +2,8 @@
     package="com.example.managed_app">
    <application
         android:label="managed_app"
+        android:icon="@mipmap/ic_launcher">
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
