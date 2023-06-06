@@ -183,10 +183,13 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                           child: Column(children: [
                             Column(
                               children: [
-                                ...subtaskController.asMap().entries.map((entry) {
+                                ...subtaskController
+                                    .asMap()
+                                    .entries
+                                    .map((entry) {
                                   final int index = entry.key;
-                                  final TextEditingController controller = entry.value;
-
+                                  final TextEditingController controller =
+                                      entry.value;
                                   return Row(
                                     children: [
                                       Expanded(
@@ -211,7 +214,8 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                                         ),
                                       ),
                                       IconButton(
-                                        icon: Icon(Icons.delete, color: Colors.red),
+                                        icon: Icon(Icons.delete,
+                                            color: Colors.red),
                                         onPressed: () {
                                           setState(() {
                                             // Remove the controller at the given index
@@ -225,7 +229,8 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                                 TextButton.icon(
                                   onPressed: () {
                                     setState(() {
-                                      subtaskController.add(TextEditingController());
+                                      subtaskController
+                                          .add(TextEditingController());
                                     });
                                   },
                                   icon: const Icon(
@@ -244,7 +249,6 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                                 ),
                               ],
                             )
-
                           ])),
                     ],
                   ),
