@@ -11,8 +11,10 @@ class NewTaskFormScreen extends StatefulWidget {
 
 class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
   final TextEditingController dateInputController = TextEditingController();
+  final TextEditingController subtaskInputController = TextEditingController();
 
   List<TextEditingController> subtaskController = [];
+  List<bool> checkboxValues = [false, true, false];
 
   bool? isActive = false;
   bool? isSelected = false;
@@ -34,23 +36,24 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(8.h),
-          child: AppBar(
-            toolbarHeight: 7.h,
-            backgroundColor: Colors.grey[50],
-            elevation: 0,
-            iconTheme: const IconThemeData(
-              color: Colors.black,
-            ),
+      resizeToAvoidBottomInset: false,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(8.h),
+        child: AppBar(
+          toolbarHeight: 7.h,
+          backgroundColor: Colors.grey[50],
+          elevation: 0,
+          iconTheme: const IconThemeData(
+            color: Colors.black,
           ),
         ),
-        body: Container(
-          child: Padding(
-            padding: const EdgeInsets.only(right: 25.0, left: 25.0),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      ),
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(right: 25.0, left: 25.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
               const Padding(
                 padding: EdgeInsets.only(
                   bottom: 4.0,
@@ -75,9 +78,10 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                   fillColor: Color(0xffF0F0F0),
                   labelText: 'Task Title',
                   labelStyle: TextStyle(
-                    fontFamily: 'Inter', fontSize: 14,
-                    fontWeight: FontWeight.w600, color: Color(0xffB9B9B9),
-                    //labelStyle: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, color: Color(0xffB9B9B9),
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xffB9B9B9),
                   ),
                 ),
               ),
@@ -91,9 +95,10 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                   fillColor: Color(0xffF0F0F0),
                   labelText: 'Task Description',
                   labelStyle: TextStyle(
-                    fontFamily: 'Inter', fontSize: 14,
-                    fontWeight: FontWeight.w600, color: Color(0xffB9B9B9),
-                    //labelStyle: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, color: Color(0xffB9B9B9),
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xffB9B9B9),
                   ),
                 ),
               ),
@@ -107,30 +112,33 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                   fillColor: Color(0xffF0F0F0),
                   labelText: 'Select Date Due',
                   labelStyle: TextStyle(
-                    fontFamily: 'Inter', fontSize: 14,
-                    fontWeight: FontWeight.w600, color: Color(0xffB9B9B9),
-                    //labelStyle: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, color: Color(0xffB9B9B9),
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xffB9B9B9),
                   ),
                 ),
                 controller: dateInputController,
                 readOnly: true,
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2050),
-                      builder: (context, child) {
-                        return Theme(
-                          data: Theme.of(context).copyWith(
-                              colorScheme: const ColorScheme.light(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2050),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
                             primary: Color(0xffFFAC48),
                             onPrimary: Colors.white,
                             onSurface: Color(0xff000000),
-                          )),
-                          child: child!,
-                        );
-                      });
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
+                  );
                   if (pickedDate != null) {
                     dateInputController.text =
                         DateFormat.yMMMMEEEEd().format(pickedDate).toString();
@@ -147,85 +155,110 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                     children: [
                       Row(
                         children: const [
-                          Text('Subtasks:',
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              )),
+                          Text(
+                            'Subtasks:',
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(
                         height: 2.h,
                       ),
-                      CheckboxListTile(
-                        controlAffinity: ListTileControlAffinity.leading,
-                        title: const Text('Subtask 1',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              //decoration: isSelected ? TextDecoration.lineThrough : null,
-                            )),
-                        value: isSelected,
-                        onChanged: (value) {
-                          setState(() {
-                            isSelected = value;
-                          });
-                        },
-                        activeColor: const Color(0xffFFAC48),
-                        checkColor: Colors.white,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CheckboxListTile(
+                              controlAffinity: ListTileControlAffinity.leading,
+                              title: Text(
+                                subtaskController[0].text,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              value: checkboxValues[0],
+                              onChanged: (value) {
+                                setState(() {
+                                  checkboxValues[0] = value!;
+                                });
+                              },
+                              activeColor: const Color(0xffFFAC48),
+                              checkColor: Colors.white,
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.clear, color: Colors.red),
+                            onPressed: () {
+                              setState(() {
+                                checkboxValues.removeAt(0);
+                                subtaskController.removeAt(0);
+                              });
+                            },
+                          ),
+                        ],
                       ),
                       Align(
-                          alignment: Alignment.topLeft,
-                          child: Column(children: [
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          children: [
                             Column(
                               children: [
                                 ...subtaskController
                                     .asMap()
                                     .entries
-                                    .map((entry) {
-                                  final int index = entry.key;
-                                  final TextEditingController controller =
-                                      entry.value;
-                                  return Row(
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: TextField(
-                                            decoration: const InputDecoration(
-                                              border: InputBorder.none,
-                                              isDense: true,
-                                              filled: true,
-                                              fillColor: Color(0xffF0F0F0),
-                                              labelText: 'Enter Subtask',
-                                              labelStyle: TextStyle(
-                                                fontFamily: 'Inter',
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xffB9B9B9),
+                                    .map(
+                                      (entry) => Row(
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: TextField(
+                                                decoration:
+                                                    const InputDecoration(
+                                                  border: InputBorder.none,
+                                                  isDense: true,
+                                                  filled: true,
+                                                  fillColor: Color(0xffF0F0F0),
+                                                  labelText: 'Enter Subtask',
+                                                  labelStyle: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color(0xffB9B9B9),
+                                                  ),
+                                                ),
+                                                controller: entry.value,
+                                                onSubmitted: (_) {
+                                                  setState(() {
+                                                    subtaskController
+                                                        .add(TextEditingController());
+                                                  });
+                                                },
                                               ),
                                             ),
-                                            controller: controller,
                                           ),
-                                        ),
+                                          IconButton(
+                                            icon: Icon(Icons.delete,
+                                                color: Colors.red),
+                                            onPressed: () {
+                                              setState(() {
+                                                subtaskController.removeAt(
+                                                    entry.key);
+                                              });
+                                            },
+                                          ),
+                                        ],
                                       ),
-                                      IconButton(
-                                        icon: Icon(Icons.delete,
-                                            color: Colors.red),
-                                        onPressed: () {
-                                          setState(() {
-                                            // Remove the controller at the given index
-                                            subtaskController.removeAt(index);
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                }).toList(),
+                                    )
+                                    .toList(),
                                 TextButton.icon(
                                   onPressed: () {
                                     setState(() {
@@ -243,55 +276,44 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                                       fontFamily: 'Inter',
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xffA7A7A7),
+                                      color: Color(0xffFFAC48),
                                     ),
                                   ),
                                 ),
                               ],
-                            )
-                          ])),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                        backgroundColor: const Color(0xffFFAC48),
-                        padding: const EdgeInsets.fromLTRB(25, 15, 25, 15),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    child: Text(
-                      "Save".toUpperCase(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w800,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ]),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
-/*IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              isActive = false;
-                                            });
-                                          },
-                                          icon: const Icon(
-                                            Icons.delete,
-                                            color: Color(0xffea0000),
-                                            size: 22,
-                                          ),
-                                      ),*/
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: NewTaskFormScreen(),
+        );
+      },
+    );
+  }
+}
