@@ -57,25 +57,40 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
               ),
             ),
             SizedBox(height: 3.h),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Task Title',
-              ),
-            ),
-            SizedBox(height: 3.h),
-            const TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Task Description',
-              ),
+                  border: const OutlineInputBorder(),
+                  labelText: 'Task Title',
+                  labelStyle: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xffA7A7A7),
+                  )),
             ),
             SizedBox(height: 3.h),
             TextField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Select Date Due',
-              ),
+              decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: 'Task Description',
+                  labelStyle: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xffA7A7A7),
+                  )),
+            ),
+            SizedBox(height: 3.h),
+            TextField(
+              decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: 'Select Date Due',
+                  labelStyle: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xffA7A7A7),
+                  )),
               controller: dateInputController,
               readOnly: true,
               onTap: () async {
@@ -137,12 +152,18 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                                       },
                                       title: Text(
                                         subtaskList[index],
-                                        style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black,
-                                        ),
+                                        style: checkboxValues[index]
+                                            ? const TextStyle(
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                color: Color(0xffA7A7A7),
+                                              )
+                                            : TextStyle(
+                                                fontFamily: 'Inter',
+                                                fontSize: 10.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black,
+                                              ),
                                       ),
                                       activeColor: const Color(0xffFFAC48),
                                       checkColor: Colors.white,
@@ -156,36 +177,56 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                                 onPressed: () {
                                   setState(() {
                                     subtaskList.removeAt(index);
-                                    //checkboxValues.removeAt(index);
                                   });
                                 },
                               ),
                             ],
                           );
                         }),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        isDense: true,
-                        filled: true,
-                        fillColor: const Color(0xffF0F0F0),
-                        labelText: 'Enter Subtask',
-                        labelStyle: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xffB9B9B9),
+                    if (showSubtaskList)
+                      TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          isDense: true,
+                          filled: true,
+                          fillColor: const Color(0xffF0F0F0),
+                          labelText: 'Enter Subtask',
+                          labelStyle: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xffB9B9B9),
+                          ),
                         ),
+                        controller: subtaskInputController,
+                        onSubmitted: (value) {
+                          setState(() {
+                            subtaskList.add(value);
+                            checkboxValues.add(false);
+                            subtaskInputController.clear();
+                            showSubtaskList = !showSubtaskList;
+                          });
+                        },
                       ),
-                      controller: subtaskInputController,
-                      onSubmitted: (value) {
-                        setState(() {
-                          subtaskList.add(value);
-                          checkboxValues.add(false);
-                          subtaskInputController.clear();
-                        });
-                      },
-                    )
+                    TextButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            showSubtaskList = !showSubtaskList;
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          color: Color(0xffFFAC48),
+                        ),
+                        label: const Text(
+                          "Add Subtask",
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xffA7A7A7),
+                          ),
+                        ))
                   ]),
             )
           ],
