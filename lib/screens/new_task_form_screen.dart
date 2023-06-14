@@ -27,7 +27,7 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(8.h),
         child: AppBar(
@@ -39,88 +39,89 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
           ),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 4.0),
-              child: Text(
-                "New Tasks",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w800,
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Text(
+                  "New Tasks",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 3.h),
-            TextField(
-              decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: 'Task Title',
-                  labelStyle: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xffA7A7A7),
-                  )),
-            ),
-            SizedBox(height: 3.h),
-            TextField(
-              decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: 'Task Description',
-                  labelStyle: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xffA7A7A7),
-                  )),
-            ),
-            SizedBox(height: 3.h),
-            TextField(
-              decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: 'Select Date Due',
-                  labelStyle: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xffA7A7A7),
-                  )),
-              controller: dateInputController,
-              readOnly: true,
-              onTap: () async {
-                final pickedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime(2050),
-                  builder: (context, child) {
-                    return Theme(
-                      data: Theme.of(context).copyWith(
-                        colorScheme: const ColorScheme.light(
-                          primary: Color(0xffFFAC48),
-                          onPrimary: Colors.white,
-                          onSurface: Color(0xff000000),
+              SizedBox(height: 3.h),
+              TextField(
+                decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: 'Task Title',
+                    labelStyle: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xffA7A7A7),
+                    )),
+              ),
+              SizedBox(height: 3.h),
+              TextField(
+                decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: 'Task Description',
+                    labelStyle: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xffA7A7A7),
+                    )),
+              ),
+              SizedBox(height: 3.h),
+              TextField(
+                decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: 'Select Date Due',
+                    labelStyle: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xffA7A7A7),
+                    )),
+                controller: dateInputController,
+                readOnly: true,
+                onTap: () async {
+                  final pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2050),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
+                            primary: Color(0xffFFAC48),
+                            onPrimary: Colors.white,
+                            onSurface: Color(0xff000000),
+                          ),
                         ),
-                      ),
-                      child: child!,
-                    );
-                  },
-                );
-                if (pickedDate != null) {
-                  dateInputController.text =
-                      DateFormat.yMMMMEEEEd().format(pickedDate).toString();
-                }
-              },
-            ),
-            SizedBox(height: 3.h),
-            Expanded(
-              child: Column(
+                        child: child!,
+                      );
+                    },
+                  );
+                  if (pickedDate != null) {
+                    dateInputController.text =
+                        DateFormat.yMMMMEEEEd().format(pickedDate).toString();
+                  }
+                },
+              ),
+              SizedBox(height: 3.h),
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -228,8 +229,36 @@ class _NewTaskFormScreenState extends State<NewTaskFormScreen> {
                           ),
                         ))
                   ]),
-            )
-          ],
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xffFFAC48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      )
+                    ), child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24.0,
+                        vertical: 12.0,
+                      ),
+                      child: Text(
+                        'SAVE',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.0,
+                          ),
+                      ),
+                      ),
+                  ),
+                  ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,0 +1,99 @@
+[33mcommit 869e54813263e898d95e08dc1d9628cb0d170998[m[33m ([m[1;36mHEAD -> [m[1;32madding-new-subtasks[m[33m, [m[1;31morigin/adding-new-subtasks[m[33m)[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Mon Jun 12 22:20:38 2023 +0300
+
+    Adding save button
+
+[33mcommit 1299395f4c382f8490242ae6f0c90a5478faf3ce[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Sat Jun 10 09:13:47 2023 +0300
+
+    Add subtask changes and add subtask button added
+
+[33mcommit ac6a353f0f7206bfed089749d38969a4d65d9475[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Fri Jun 9 11:09:52 2023 +0300
+
+    Adding tasks entered in field in checkbox view list
+
+[33mcommit 89753692fc9347b138dd138bbedb81b68ba6a017[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Thu Jun 8 00:38:03 2023 +0300
+
+    adding subtask feature
+
+[33mcommit 21ab0f4023c7f00af703251e3e500e348b2a9eb3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: king <infor.samson@gmail.com>
+Date:   Tue Jun 6 20:30:01 2023 +0300
+
+    Version 1: Format code and remove underscore (#1)
+    
+    * Remove the underscore
+    
+    * Format the code
+
+[33mcommit 8c2395fcaa3f958c92283d82231078d973d906cd[m
+Author: charlie-black <boompiccasso@gmail.com>
+Date:   Thu Mar 16 19:58:27 2023 +0300
+
+    add text-fields dynamically and delete a text-field at index
+
+[33mcommit c3015b5e05e62f930753449876c637c60ac3c4ec[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Thu Mar 16 18:20:05 2023 +0300
+
+    Add new subtask modifications
+
+[33mcommit 1a462fd786a58a2824f517fa096f954cfb77f7fc[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Mon Mar 6 16:17:48 2023 +0300
+
+    Add new task screen and other modifications
+
+[33mcommit e45343b9f1a709ff3233138662124668291f1e79[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Sat Mar 4 16:31:10 2023 +0300
+
+    Add new task screen commit
+
+[33mcommit a452bb9c78a1e14d1aee605bc79bee84bdee1c4c[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Tue Jan 24 12:09:15 2023 +0300
+
+    Home screen progress
+
+[33mcommit f780b9a8ee98b9d9027648fc34d99541f2d11fa6[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Tue Jan 24 09:44:14 2023 +0300
+
+    Home screen progress
+
+[33mcommit 75635b5f2ce5434e730e32b0f3a8ba5506655525[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Tue Jan 24 09:43:06 2023 +0300
+
+    Home screen progress
+
+[33mcommit fed3b64717e8e82bb6d99f9625ee104afc948ecc[m
+Author: charlie-black <boompiccasso@gmail.com>
+Date:   Sun Jan 22 14:44:43 2023 +0300
+
+    managed alignment
+
+[33mcommit 7035a4ed7a06d74c7962579b8e89aac3a9916b67[m
+Author: charlie-black <boompiccasso@gmail.com>
+Date:   Sun Jan 22 14:16:23 2023 +0300
+
+    managed bottom
+
+[33mcommit ddc0ac78c7a156fdad0077f00809be43f70e4bce[m
+Author: charlie-black <boompiccasso@gmail.com>
+Date:   Sun Jan 22 13:54:18 2023 +0300
+
+    splash screen overflow fix
+
+[33mcommit 23ef8dbe259b5b89a2660bf75e3a52652cd6f9ed[m
+Author: GloriaMMuthumbi <muthumbigloria.m@gmail.com>
+Date:   Sun Jan 22 12:41:53 2023 +0300
+
+    Initial Commit
