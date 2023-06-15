@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'new_task_form_screen.dart';
+import 'package:managed_app/components/task_component_template.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 7.h,
-          backgroundColor: Colors.grey[50],
+          backgroundColor: Colors.white,
           elevation: 0,
           iconTheme: const IconThemeData(color: Colors.black),
           actions: [
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       children: [
                         const Expanded(
                           child: Center(
-                            child: Text(
+                            /*child: Text(
                               "You currently have no tasks to do",
                               style: TextStyle(
                                 fontFamily: 'Inter',
@@ -106,7 +107,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 fontSize: 15.0,
                                 color: Color(0xffA7A7A7),
                               ),
-                            ),
+                            ),*/
+                            child: taskComponent(),
                           ),
                         ),
                         Padding(
