@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 3, vsync: this);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(8.h),
         child: AppBar(
@@ -108,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 color: Color(0xffA7A7A7),
                               ),
                             ),*/
-                            child: taskComponent(),
+                            child: TaskComponent(),
                           ),
                         ),
                         Padding(
